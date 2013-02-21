@@ -90,7 +90,7 @@
                 <configuration>
                     <target>${targetJdkVersion}</target>
                     <source>${targetJdkVersion}</source>
-                    <fork>false</fork>
+                    <fork>true</fork>
                     <executable>${targetJdk}/bin/javac</executable>
                 </configuration>
             </plugin>

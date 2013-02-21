@@ -1,4 +1,4 @@
-package com.griddynamics.platform.loadbalancer;
+package com.griddynamics.jagger.loadbalancer;
 
 import com.griddynamics.jagger.invoker.QueryPoolLoadBalancer;
 import com.griddynamics.jagger.invoker.RoundRobinLoadBalancer;

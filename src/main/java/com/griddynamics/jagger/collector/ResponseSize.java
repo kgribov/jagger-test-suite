@@ -1,4 +1,4 @@
-package com.griddynamics.collector;
+package com.griddynamics.jagger.collector;
 
 import com.griddynamics.jagger.engine.e1.collector.MetricCalculator;
 

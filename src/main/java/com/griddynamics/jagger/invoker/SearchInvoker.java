@@ -17,18 +17,11 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.griddynamics.invoker;
+package com.griddynamics.jagger.invoker;
 
-import com.google.common.base.Preconditions;
-import com.griddynamics.jagger.invoker.InvocationException;
-import com.griddynamics.jagger.invoker.Invoker;
 import org.apache.commons.httpclient.*;
-import org.apache.commons.httpclient.methods.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Required;
-
-import java.io.IOException;
 
 public class SearchInvoker implements Invoker<String, Integer, String> {
     private static final Logger log = LoggerFactory.getLogger(SearchInvoker.class);

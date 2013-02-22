@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+        xmlns="http://www.griddynamics.com/schema/jagger"
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation=
+                "
+        http://www.griddynamics.com/schema/jagger
+        http://www.griddynamics.com/schema/jagger.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"
+        >
+
+      <configuration id="reportConfig">
+          <report outputReportLocation="parent-report.pdf" />
+      </configuration>
+
+      <configuration id="latency99Config" parent="reportConfig">
+          <latency-percentiles>
+              <percentile>99</percentile>
+          </latency-percentiles>
+      </configuration>
+
+      <configuration id="jaggerCustomConfig1" parent="latency99Config">
+          <test-suite>
+              <test-group id="test-tps-group">
+                  <test id="tps-1000" testDescription="altai-http-sleep-15">
+                      <load xsi:type="load-tps" value="1000"/>
+                      <termination xsi:type="termination-iterations" iterations="200"/>
+                  </test>
+                  <test id="user-group-10" testDescription="altai-http-sleep-15">
+                      <load xsi:type="load-user-group" count="10" startCount="10" startIn="0" startBy="0" life="1h"/>
+                      <termination xsi:type="termination-duration" duration="30s"/>
+                  </test>
+              </test-group>
+          </test-suite>
+      </configuration>
+
+</beans:beans>

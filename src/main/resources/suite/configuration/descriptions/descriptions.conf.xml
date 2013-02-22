@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+        xmlns="http://www.griddynamics.com/schema/jagger"
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation=
+                "
+        http://www.griddynamics.com/schema/jagger
+        http://www.griddynamics.com/schema/jagger.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"
+        >
+
+    <test-description id="altai-http-sleep-15">
+
+        <info-collectors>
+            <validator xsi:type="validator-not-null-response"/>
+        </info-collectors>
+
+        <scenario xsi:type="scenario-ref" ref="scenario-altai-sleep-15"/>
+
+    </test-description>
+
+    <test-description id="empty-performance-test">
+        <scenario xsi:type="scenario-query-pool" parent="scenario-parent">
+            <invoker xsi:type="invoker-class" class="com.griddynamics.jagger.invoker.EmptyInvoker"/>
+        </scenario>
+    </test-description>
+
+    <test-description id="yandex-searcher">
+        <info-collectors>
+            <metric xsi:type="metric-custom" calculator="caclYandexResponses"/>
+        </info-collectors>
+
+        <scenario xsi:type="scenario-query-pool">
+
+            <invoker xsi:type="invoker-class" class="com.griddynamics.jagger.invoker.YandexWordSearchInvoker"/>
+
+            <query-distributor xsi:type="query-distributor-one-by-one"/>
+
+            <query-provider xsi:type="query-provider-ref" ref="queries-griddynamics"/>
+            <endpoint-provider xsi:type="endpoint-provider-ref" ref="endpoints-yandex"/>
+
+        </scenario>
+    </test-description>
+
+    <scenario id="scenario-time-out" xsi:type="scenario-query-pool" parent="scenario-parent">
+        <query-provider xsi:type="query-provider-ref" ref="query-provider2-timeout"/>
+    </scenario>
+
+    <scenario id="scenario-altai-sleep-15" xsi:type="scenario-query-pool" parent="scenario-parent">
+        <endpoint-provider xsi:type="endpoint-provider-ref" ref="endpoints-altai-15"/>
+    </scenario>
+
+    <scenario id="round-robin-scenario" xsi:type="scenario-query-pool" parent="scenario-parent">
+        <query-distributor xsi:type="query-distributor-round-robin"/>
+    </scenario>
+
+    <scenario id="scenario-parent" xsi:type="scenario-query-pool">
+        <invoker xsi:type="invoker-http"/>
+
+        <query-distributor xsi:type="query-distributor-one-by-one"/>
+
+        <query-provider xsi:type="query-provider-ref" ref="query-provider2-timeout"/>
+
+        <endpoint-provider xsi:type="endpoint-provider-ref" ref="endpoints-altai-10"/>
+    </scenario>
+
+</beans:beans>

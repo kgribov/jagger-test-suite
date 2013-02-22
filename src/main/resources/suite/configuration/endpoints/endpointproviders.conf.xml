@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+        xmlns="http://www.griddynamics.com/schema/jagger"
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation=
+                "
+        http://www.griddynamics.com/schema/jagger
+        http://www.griddynamics.com/schema/jagger.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"
+        >
+
+    <endpoint-provider id="endpoints-altai-10" xsi:type="endpoint-provider-list">
+        <endpoint>http://172.20.6.12:8080/sleep/10</endpoint>
+        <endpoint>http://172.20.6.13:8080/sleep/10</endpoint>
+    </endpoint-provider>
+
+    <endpoint-provider id="endpoints-altai-15" xsi:type="endpoint-provider-list">
+        <endpoint>http://172.20.6.12:8080/sleep/15</endpoint>
+        <endpoint>http://172.20.6.13:8080/sleep/15</endpoint>
+    </endpoint-provider>
+
+    <endpoint-provider id="endpoints-altai-25" xsi:type="endpoint-provider-list">
+        <endpoint>http://172.20.6.12:8080/sleep/25</endpoint>
+        <endpoint>http://172.20.6.13:8080/sleep/25</endpoint>
+    </endpoint-provider>
+
+    <endpoint-provider id="endpoints-altai-35" xsi:type="endpoint-provider-list">
+        <endpoint>http://172.20.6.12:8080/sleep/35</endpoint>
+        <endpoint>http://172.20.6.13:8080/sleep/35</endpoint>
+    </endpoint-provider>
+
+    <endpoint-provider id="endpoints-altai-45" xsi:type="endpoint-provider-list">
+        <endpoint>http://172.20.6.12:8080/sleep/45</endpoint>
+        <endpoint>http://172.20.6.13:8080/sleep/45</endpoint>
+    </endpoint-provider>
+
+    <endpoint-provider id="endpoints-yandex" xsi:type="endpoint-provider-list">
+        <endpoint>http://yandex.ru</endpoint>
+        <endpoint>http://images.yandex.ru</endpoint>
+        <endpoint>http://ya.ru</endpoint>
+        <endpoint>http://news.yandex.ru</endpoint>
+    </endpoint-provider>
+
+</beans:beans>

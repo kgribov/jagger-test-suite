@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+        xmlns="http://www.griddynamics.com/schema/jagger"
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation=
+                "
+        http://www.griddynamics.com/schema/jagger
+        http://www.griddynamics.com/schema/jagger.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"
+        >
+
+    <configuration id="jagger-empty-tps">
+
+        <report outputReportLocation="emptyPerformanceTPS.pdf"/>
+
+        <latency-percentiles>
+            <percentile>100</percentile>
+        </latency-percentiles>
+
+        <test-suite>
+            <test-group id="test-tps-empty">
+
+                <test id="tps-1000000" testDescription="empty-performance-test">
+                    <load xsi:type="load-tps" value="1000000"/>
+                    <termination xsi:type="termination-duration" duration="10s"/>
+                </test>
+            </test-group>
+        </test-suite>
+
+    </configuration>
+
+    <configuration id="jagger-yandex-test">
+
+        <report outputReportLocation="yandexSearcherTest.pdf"/>
+
+        <latency-percentiles>
+            <percentile>100</percentile>
+        </latency-percentiles>
+
+        <test-suite>
+            <test-group id="yandex-test-1">
+                <test id="thread-1-iteration-1" testDescription="yandex-searcher">
+                    <load xsi:type="load-threads" count="5"/>
+                    <termination xsi:type="termination-duration" duration="3s"/>
+                </test>
+            </test-group>
+        </test-suite>
+    </configuration>
+
+
+</beans:beans>

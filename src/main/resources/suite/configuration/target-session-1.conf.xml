@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+        xmlns="http://www.griddynamics.com/schema/jagger"
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation=
+                "
+        http://www.griddynamics.com/schema/jagger
+        http://www.griddynamics.com/schema/jagger.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"
+        >
+
+        <configuration id="jaggerCustomConfig">
+
+            <report outputReportLocation="jaggerCustomConfig.pdf"
+                    rootTemplateLocation="reporting/report-container-custom.jrxml"/>
+
+            <latency-percentiles>
+                <percentile>60</percentile>
+                <percentile>70</percentile>
+                <percentile>80</percentile>
+                <percentile>90</percentile>
+                <percentile>95</percentile>
+                <percentile>97</percentile>
+                <percentile>99</percentile>
+            </latency-percentiles>
+
+            <test-suite>
+
+                <test-group id="test-tps-threads">
+
+                    <test id="tps-20-time-1minute" testDescription="altai-http-sleep-5">
+                        <load xsi:type="load-tps" value="20"/>
+                        <termination xsi:type="termination-duration" duration="20s"/>
+                    </test>
+
+                    <test id="threads-10-wait-tps" testDescription="altai-http-sleep-5">
+                        <load xsi:type="load-threads" count="10"/>
+                        <termination xsi:type="termination-background"/>
+                    </test>
+
+                </test-group>
+
+                <test-group id="test-groups">
+
+                    <test id="user-groups-2-users-10" testDescription="altai-http-sleep-25">
+                        <load xsi:type="load-user-groups">
+                            <user count="10" startCount="10" startIn="0" startBy="0" life="1h"/>
+                        </load>
+                        <termination xsi:type="termination-duration" duration="30s"/>
+                    </test>
+
+                    <test id="user-groupds-1-user-15" testDescription="altai-http-sleep-25">
+                        <load xsi:type="load-user-group" count="15" startCount="15" startIn="0" startBy="0" life="1h"/>
+                        <termination xsi:type="termination-iterations" iterations="100"/>
+                    </test>
+
+                </test-group>
+
+            </test-suite>
+
+        </configuration>
+
+        <test-description id="altai-http-sleep-5">
+
+            <info-collectors>
+                <validator xsi:type="validator-not-null-response"/>
+            </info-collectors>
+
+            <scenario xsi:type="scenario-query-pool">
+
+                <invoker xsi:type="invoker-http"/>
+
+                <query-distributor xsi:type="query-distributor-round-robin"/>
+
+                <query-provider xsi:type="query-provider-list">
+                    <query xsi:type="query-http" method="GET">
+                        <client-params>
+                            <param key="http.connection-manager.timeout">
+                                <value xsi:type="long">5000</value>
+                            </param>
+                        </client-params>
+                    </query>
+                    <query xsi:type="query-http" method="GET">
+                        <client-params>
+                            <param key="http.protocol.max-redirects">
+                                <value xsi:type="integer">2</value>
+                            </param>
+                        </client-params>
+                    </query>
+                </query-provider>
+
+                <endpoint-provider xsi:type="endpoint-provider-list">
+                    <endpoint>http://172.20.6.12:8080/sleep/5</endpoint>
+                    <endpoint>http://172.20.6.13:8080/sleep/5</endpoint>
+                </endpoint-provider>
+
+            </scenario>
+
+        </test-description>
+
+        <test-description id="altai-http-sleep-25">
+            <scenario xsi:type="scenario-query-pool">
+
+                <invoker xsi:type="invoker-http"/>
+
+                <query-distributor xsi:type="query-distributor-round-robin"/>
+
+                <query-provider xsi:type="query-provider-list">
+                    <query xsi:type="query-http" method="GET">
+                        <client-params>
+                            <param key="http.connection-manager.timeout">
+                                <value xsi:type="long">5000</value>
+                            </param>
+                            <param key="http.protocol.max-redirects">
+                                <value xsi:type="integer">2</value>
+                            </param>
+                        </client-params>
+                    </query>
+                </query-provider>
+
+                <endpoint-provider xsi:type="endpoint-provider-list">
+                    <endpoint>http://172.20.6.12:8080/sleep/25</endpoint>
+                    <endpoint>http://172.20.6.13:8080/sleep/25</endpoint>
+                </endpoint-provider>
+
+            </scenario>
+        </test-description>
+
+</beans:beans>

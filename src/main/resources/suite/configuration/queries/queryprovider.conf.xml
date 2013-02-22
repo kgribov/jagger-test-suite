@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+        xmlns="http://www.griddynamics.com/schema/jagger"
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation=
+                "
+        http://www.griddynamics.com/schema/jagger
+        http://www.griddynamics.com/schema/jagger.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"
+        >
+    <query-provider id="query-provider1-redirect" xsi:type="query-provider-list">
+        <query xsi:type="query-http" method="GET">
+            <client-params>
+                <param key="http.protocol.max-redirects">
+                    <value xsi:type="integer">2</value>
+                </param>
+            </client-params>
+        </query>
+    </query-provider>
+
+    <query-provider id="query-provider2-redirect" xsi:type="query-provider-list">
+        <query xsi:type="query-http" method="GET">
+            <client-params>
+                <param key="http.protocol.max-redirects">
+                    <value xsi:type="integer">2</value>
+                </param>
+            </client-params>
+        </query>
+        <query xsi:type="query-http" method="GET">
+            <client-params>
+                <param key="http.protocol.max-redirects">
+                    <value xsi:type="integer">2</value>
+                </param>
+            </client-params>
+        </query>
+    </query-provider>
+
+    <query-provider id="query-provider1-timeout" xsi:type="query-provider-list">
+        <query xsi:type="query-http" method="GET">
+            <client-params>
+                <param key="http.connection-manager.timeout">
+                    <value xsi:type="long">5000</value>
+                </param>
+            </client-params>
+        </query>
+        <query xsi:type="query-http" method="GET">
+            <client-params>
+                <param key="http.connection-manager.timeout">
+                    <value xsi:type="long">5000</value>
+                </param>
+            </client-params>
+        </query>
+    </query-provider>
+
+    <query-provider id="query-provider2-timeout" xsi:type="query-provider-list">
+        <query xsi:type="query-http" method="GET">
+            <client-params>
+                <param key="http.connection-manager.timeout">
+                    <value xsi:type="long">5000</value>
+                </param>
+            </client-params>
+        </query>
+        <query xsi:type="query-http" method="GET">
+            <client-params>
+                <param key="http.connection-manager.timeout">
+                    <value xsi:type="long">5000</value>
+                </param>
+            </client-params>
+        </query>
+    </query-provider>
+
+    <query-provider id="queries-griddynamics" xsi:type="query-provider-list">
+        <query>griddynamics</query>
+        <query>jagger</query>
+        <query>jagger is the best one</query>
+    </query-provider>
+
+</beans:beans>

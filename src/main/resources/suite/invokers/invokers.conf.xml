@@ -4,6 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-lazy-init="true">
 
-    <!--<bean id="searchInvoker" class="com.griddynamics.jagger.invoker.SearchInvoker"/>-->
+    <bean id="emptyInvoker" class="com.griddynamics.jagger.invoker.EmptyInvoker"/>
+    <bean id="yandexWordSearcher" class="com.griddynamics.jagger.invoker.YandexWordSearchInvoker"/>
 
 </beans>

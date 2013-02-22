@@ -4,7 +4,7 @@
         xmlns:beans="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation=
-                "
+        "
         http://www.griddynamics.com/schema/jagger
         http://www.griddynamics.com/schema/jagger.xsd
         http://www.springframework.org/schema/beans
@@ -13,7 +13,8 @@
 
     <configuration id="jagger-empty-tps">
 
-        <report outputReportLocation="emptyPerformanceTPS.pdf"/>
+        <report outputReportLocation="emptyPerformanceTPS.pdf"
+                rootTemplateLocation="reporting/report-container-custom.jrxml"/>
 
         <latency-percentiles>
             <percentile>100</percentile>
@@ -42,7 +43,7 @@
         <test-suite>
             <test-group id="yandex-test-1">
                 <test id="thread-1-iteration-1" testDescription="yandex-searcher">
-                    <load xsi:type="load-threads" count="5"/>
+                    <load xsi:type="load-threads" count="3"/>
                     <termination xsi:type="termination-duration" duration="3s"/>
                 </test>
             </test-group>

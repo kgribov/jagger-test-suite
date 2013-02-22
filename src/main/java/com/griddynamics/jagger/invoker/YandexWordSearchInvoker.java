@@ -33,7 +33,6 @@ public class YandexWordSearchInvoker implements Invoker<String, Integer, String>
     @Override
     public final Integer invoke(String query, String endpoint) throws InvocationException {
         String httpQueryString = endpoint+"/yandsearch?text="+query;
-        log.info("Go to execute next query "+httpQueryString);
         GetMethod method = new GetMethod(httpQueryString);
 
         HttpClient client = new HttpClient();

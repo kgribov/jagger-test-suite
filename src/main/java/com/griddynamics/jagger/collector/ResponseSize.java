@@ -10,7 +10,6 @@ public class ResponseSize implements MetricCalculator<Integer> {
 
     @Override
     public Integer calculate(Integer response) {
-        log.info("Calculate response="+response);
         return response;
     }
 }

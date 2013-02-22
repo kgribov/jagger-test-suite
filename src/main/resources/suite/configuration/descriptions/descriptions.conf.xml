@@ -28,6 +28,7 @@
     </test-description>
 
     <test-description id="yandex-searcher">
+
         <info-collectors>
             <metric xsi:type="metric-custom" calculator="caclYandexResponses"/>
         </info-collectors>

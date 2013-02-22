@@ -51,7 +51,7 @@
                         <termination xsi:type="termination-duration" duration="30s"/>
                     </test>
 
-                    <test id="user-groupds-1-user-15" testDescription="altai-http-sleep-5">
+                    <test id="user-groups-1-user-15" testDescription="altai-http-sleep-5">
                         <load xsi:type="load-user-group" count="15" startCount="15" startIn="0" startBy="0" life="1h"/>
                         <termination xsi:type="termination-iterations" iterations="100"/>
                     </test>
@@ -92,8 +92,8 @@
                 </query-provider>
 
                 <endpoint-provider xsi:type="endpoint-provider-list">
-                    <endpoint>http://172.20.6.12:8080/sleep/5</endpoint>
-                    <endpoint>http://172.20.6.13:8080/sleep/5</endpoint>
+                    <endpoint>${altai.server1}/sleep/5</endpoint>
+                    <endpoint>${altai.server2}/sleep/5</endpoint>
                 </endpoint-provider>
 
             </scenario>

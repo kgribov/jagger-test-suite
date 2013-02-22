@@ -14,7 +14,8 @@
     <configuration id="jagger-empty-tps">
 
         <report outputReportLocation="emptyPerformanceTPS.pdf"
-                rootTemplateLocation="reporting/report-container-custom.jrxml"/>
+                rootTemplateLocation="reporting/report-container-custom.jrxml">
+        </report>
 
         <latency-percentiles>
             <percentile>100</percentile>

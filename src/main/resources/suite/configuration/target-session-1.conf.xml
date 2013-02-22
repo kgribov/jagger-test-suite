@@ -44,14 +44,14 @@
 
                 <test-group id="test-groups">
 
-                    <test id="user-groups-2-users-10" testDescription="altai-http-sleep-25">
+                    <test id="user-groups-2-users-10" testDescription="altai-http-sleep-5">
                         <load xsi:type="load-user-groups">
                             <user count="10" startCount="10" startIn="0" startBy="0" life="1h"/>
                         </load>
                         <termination xsi:type="termination-duration" duration="30s"/>
                     </test>
 
-                    <test id="user-groupds-1-user-15" testDescription="altai-http-sleep-25">
+                    <test id="user-groupds-1-user-15" testDescription="altai-http-sleep-5">
                         <load xsi:type="load-user-group" count="15" startCount="15" startIn="0" startBy="0" life="1h"/>
                         <termination xsi:type="termination-iterations" iterations="100"/>
                     </test>
@@ -98,34 +98,6 @@
 
             </scenario>
 
-        </test-description>
-
-        <test-description id="altai-http-sleep-25">
-            <scenario xsi:type="scenario-query-pool">
-
-                <invoker xsi:type="invoker-http"/>
-
-                <query-distributor xsi:type="query-distributor-round-robin"/>
-
-                <query-provider xsi:type="query-provider-list">
-                    <query xsi:type="query-http" method="GET">
-                        <client-params>
-                            <param key="http.connection-manager.timeout">
-                                <value xsi:type="long">5000</value>
-                            </param>
-                            <param key="http.protocol.max-redirects">
-                                <value xsi:type="integer">2</value>
-                            </param>
-                        </client-params>
-                    </query>
-                </query-provider>
-
-                <endpoint-provider xsi:type="endpoint-provider-list">
-                    <endpoint>http://172.20.6.12:8080/sleep/25</endpoint>
-                    <endpoint>http://172.20.6.13:8080/sleep/25</endpoint>
-                </endpoint-provider>
-
-            </scenario>
         </test-description>
 
 </beans:beans>
